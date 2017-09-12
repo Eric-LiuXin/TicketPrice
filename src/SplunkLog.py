@@ -1,5 +1,19 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+import socket
+TO_ADDRESS = ('localhost', 514)
+LOG = '''Flight information:AirRoute = {0}, Company = {1}, \
+Flight = {2}, AircraftType = {3}, TakeoffAirport = {4}, \
+ArrivalAirport = {5}, DepartureTime = {6}, Price = {7}, \
+QueryTime = {8}\
+'''
 def Save(price_pannel):
-    my_str = "Flight information: Company = {0}, Flight = {1}, Aircraft Type = {2}, Takeoff City = {3}, Arrival City = {4}, Departure Time = {5}, Price = {6}, Query Time = {7}".format(\
-                price_pannel.company, price_pannel.flight, price_pannel.aircraft_type, price_pannel.takeoff_city, price_pannel.arrival_city,
-                price_pannel.departure_time, price_pannel.price, price_pannel.query_time)
-    print (my_str)
+    udp_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    my_str = LOG.format(\
+                price_pannel.air_route, price_pannel.company, \
+                price_pannel.flight,price_pannel.aircraft_type, price_pannel.takeoff_airport, \
+                price_pannel.arrival_airport, price_pannel.departure_time, price_pannel.price,\
+                price_pannel.query_time\
+            )
+    #print (my_str)
+    udp_client.sendto(("%s" %(my_str)).encode(), TO_ADDRESS)

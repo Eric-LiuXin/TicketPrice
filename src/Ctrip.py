@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 import datetime
 class Ctrip():
     City = {
@@ -6,7 +8,7 @@ class Ctrip():
     }
     @staticmethod
     def QueryURL():
-        url_list = list()
+        url_list = dict()
         start_urls = "http://flights.ctrip.com/booking"
         today = datetime.date.today()
         for air_line in {\
@@ -15,11 +17,16 @@ class Ctrip():
                          if from_city != to_city \
                         }:
             url = start_urls + "/{0}-day-1.html?DDate1=".format(air_line)
-            [url_list.append(url + str(today + datetime.timedelta(days=wft))) for wft in range(0, 30)]
-        
+            url_list[air_line] = dict()
+            for key in range(0, 30):
+                departure_time = str(today + datetime.timedelta(days=key))
+                url_list[air_line][departure_time] = url + departure_time
         return url_list
 
 if __name__=="__main__":
-    _list = Ctrip.QueryURL()
-    for url in _list:
-        print (url)
+    url_list = Ctrip.QueryURL()
+    for key in url_list:
+        air_line = url_list[key]
+        for departure_time in air_line:
+            url = air_line[departure_time]
+            print (url)
