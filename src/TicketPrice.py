@@ -9,8 +9,8 @@ from Ctrip import Ctrip
 import SplunkLog
 
 def Run():
-    start_url = Ctrip.StartURL()
-    my_crawl = Crawl(start_url)
+    start_urls = Ctrip.StartURL()
+    my_crawl = Crawl(start_urls)
     try:
         my_crawl.Run()
         price_pannel_list = my_crawl.price_pannel_list

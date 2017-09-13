@@ -16,3 +16,4 @@ def Save(price_pannel):
                 price_pannel.query_time\
             )
     udp_client.sendto(("%s" %(my_str)).encode(), TO_ADDRESS)
+    #print (my_str)
