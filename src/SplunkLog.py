@@ -15,5 +15,4 @@ def Save(price_pannel):
                 price_pannel.arrival_airport, price_pannel.departure_time, price_pannel.price,\
                 price_pannel.query_time\
             )
-    #print (my_str)
     udp_client.sendto(("%s" %(my_str)).encode(), TO_ADDRESS)
