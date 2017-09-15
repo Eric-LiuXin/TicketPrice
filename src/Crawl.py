@@ -17,6 +17,7 @@ class Crawl:
         self.driver = webdriver.PhantomJS()
         self.driver.set_page_load_timeout(10) 
         self.start_urls = start_urls
+        self.depart_city, self.arrive_city = None, None
         self.scroll_js="document.body.scrollTop=100000"
         self.depart_city_js = 'return document.getElementById("DCityName1").value'
         self.arrive_city_js = 'return document.getElementById("ACityName1").value'
